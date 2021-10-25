@@ -40,3 +40,5 @@ summary(silviatable$fishes)
 # Let's make an histogram
 hist(silviatable$fishes)
 hist(silviatable$water)
+
+
