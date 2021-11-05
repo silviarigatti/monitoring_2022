@@ -42,3 +42,41 @@ plot(l2011, col=cl)
 # with this function, we can obtain the natural colors of the image
 plotRGB(l2011, r=3, g=2, b=1, stretch="Lin")
 
+
+
+# lesson 05.11.2021
+
+# let's repeat the things we did last lesson
+# now, let's plot only the green band
+# plot is the function, the things written inside the parentesis () are the argument
+
+plot(l2011$B2_sre)
+
+# again, as last lecture, we change the colors of the raster obtained with the plot function
+
+cl <- colorRampPalette(c("black", "grey", "light grey"))(100)
+
+plot(l2011$B2_sre, col=cl)
+
+# let's change the colorRampPalette with dark green, green and light green
+clg <- colorRampPalette(c("dark green", "green", "light green"))(100)
+plot(l2011$B2_sre, col=clg)
+
+# let's plot the blue band and do the same as before
+plot(l2011$B1_sre)
+clb <- colorRampPalette(c("dark blue", "blue", "light blue"))(100)
+plot(l2011$B2_sre, col=clb)
+
+# let's introduce another functon, the par multi frame
+# Let's plot both images in one multi frame graph
+# (1, 2) means one row and two columns. first number: n° of rows; second number: n° of columns
+par(mfrow=c(1, 2))
+plot(l2011$B2_sre, col=clb)
+plot(l2011$B2_sre, col=clg)
+
+
+# Let's do another plot, with two rows and one colums
+par(mfrow=c(2, 1))
+plot(l2011$B2_sre, col=clb)
+plot(l2011$B2_sre, col=clg)
+
