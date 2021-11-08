@@ -67,8 +67,8 @@ plot(l2011$B1_sre)
 clb <- colorRampPalette(c("dark blue", "blue", "light blue"))(100)
 plot(l2011$B2_sre, col=clb)
 
-# let's introduce another functon, the par multi frame
-# Let's plot both images in one multi frame graph
+# let's introduce another functon, the par multiframe
+# Let's  plot the blue and the green besides, with different colorRampPalette, in one multi frame graph
 # (1, 2) means one row and two columns. first number: n° of rows; second number: n° of columns
 par(mfrow=c(1, 2))
 plot(l2011$B2_sre, col=clb)
@@ -80,3 +80,53 @@ par(mfrow=c(2, 1))
 plot(l2011$B2_sre, col=clb)
 plot(l2011$B2_sre, col=clg)
 
+
+# lesson 08.11.2021
+library(raster)
+# set the working directory every time, because R only creates temporary files.
+setwd("C:/lab/")
+
+# do again the same things as last time
+
+# now, let's plot the first four bands with two rows and two columns
+# first, we have to do the red and the near infrared bands
+plot(l2011$B3_sre)
+clr <- colorRampPalette(c("dark red", "red", "pink"))(100)
+plot(l2011$B3_sre, col=clr)
+
+plot(l2011$B4_sre)
+clnir <- colorRampPalette(c("red", "orange", "yellow"))(100)
+plot(l2011$B4_sre, col=clnir)
+
+# now we have to plot the four bands
+par(mfrow=c(2, 2))
+plot(l2011$B2_sre, col=clb)
+plot(l2011$B2_sre, col=clg)
+plot(l2011$B3_sre, col=clr)
+plot(l2011$B4_sre, col=clnir)
+
+
+
+# the dev.off() function closes the plotting device window
+dev.off()
+
+# now, we want to obtain the raster in natural colors
+# we use the function plotRGB
+plotRGB(l2011, r=3, g=2, b=1, stretch="Lin")
+
+#now, let's see the near infrared. we can see all the vegetation, because it reflects the NIR
+plotRGB(l2011, r=4, g=2, b=1, stretch="Lin")
+
+# let's put the NIR in the green.
+plotRGB(l2011, r=3, g=4, b=1, stretch="Lin")
+
+# let's change again, and put the NIR in the blue.
+plotRGB(l2011, r=3, g=2, b=4, stretch="Lin")
+
+
+# let's do a multi frame of thele last 4 images
+par(mfrow=c(2,2))
+plotRGB(l2011, r=3, g=2, b=1, stretch="Lin")   # natural colors
+plotRGB(l2011, r=4, g=2, b=1, stretch="Lin")   # false colors
+plotRGB(l2011, r=3, g=4, b=1, stretch="Lin")   # false colors
+plotRGB(l2011, r=3, g=2, b=4, stretch="Lin")   # false colors
