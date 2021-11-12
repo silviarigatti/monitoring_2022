@@ -112,6 +112,7 @@ dev.off()
 
 # now, we want to obtain the raster in natural colors
 # we use the function plotRGB
+# stretch: the linear stretching is a way to stretch informations. as an example, if I have (vedi lezione 12.11 minuto 25 circa)
 plotRGB(l2011, r=3, g=2, b=1, stretch="Lin")
 
 #now, let's see the near infrared. we can see all the vegetation, because it reflects the NIR
@@ -130,3 +131,32 @@ plotRGB(l2011, r=3, g=2, b=1, stretch="Lin")   # natural colors
 plotRGB(l2011, r=4, g=2, b=1, stretch="Lin")   # false colors
 plotRGB(l2011, r=3, g=4, b=1, stretch="Lin")   # false colors
 plotRGB(l2011, r=3, g=2, b=4, stretch="Lin")   # false colors
+
+
+# 12.11.2021
+# final day on this tropical forest reserve
+library(raster)
+setwd("C:/lab/")
+l2011<-brick("p224r63_2011.grd")
+
+plotRGB(l2011, r=4, g=3, b=2, stretch="Lin")
+# there are also other types of stretching, as the Hist (see graph of the lesson minute 30 circa
+plotRGB(l2011, r=4, g=3, b=2, stretch="Hist")
+
+# let's import past data
+l1988 <- brick("p224r63_1988")
+# let's compose the image of the l1988
+l1988
+# let's plot the image of l1988 and l2011 in two rows and one column
+par(mfrow=c(2,1))
+plotRGB(l1988, r=4, g=3, b=2, stretch="Lin") 
+plotRGB(l2011, r=4, g=3, b=2, stretch="Lin") 
+# we can see that in 1988 the forest was big, and they started to build small streets in the forest, small agriculture areas
+
+# now, we change the bands. the NIR in the blue channel, and all the agriculture areas will become yellow
+# then, we also plot the images
+par(mfrow=c(2,1))
+plotRGB(l1988, r=2, g=3, b=4, stretch="Lin") 
+plotRGB(l2011, r=2, g=3, b=4, stretch="Lin") 
+
+
