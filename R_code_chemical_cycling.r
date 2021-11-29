@@ -72,3 +72,41 @@ plotRGB(EN, r=1, g=7, b=13, stretch="Lin")
 # blue: high values of NO2 in the 13 image, in March
 # yellow: unalterate during the whole lockdown
 # 
+
+
+# 29.11.2021
+
+library(raster)
+setwd("C:/lab/en/")
+
+# importing all the data together with the lapply function
+rlist <- list.files(pattern="EN")
+lapply(rlist, raster)
+
+list_rast <- lapply(rlist, raster)
+
+# to put all together the files we use the function stack
+EN_stack <- stack(list_rast)
+EN_stack
+
+# let's plot all the images together
+cl <- colorRampPalette(c("red", "orange", "yellow"))(100)
+plot(EN_stack, col=cl)
+
+# plot only the first image of the stack
+plot(EN_stack$EN_0001, col=cl)
+
+# difference
+ENdif <- EN_stack$EN_0001 - EN_stack$EN_0013
+cldif <- colorRampPalette(c('blue','white','red'))(100) # 
+plot(ENdif, col=cldif)
+
+
+
+dev.off()
+
+
+# read a file from the pc directly
+setwd("C:/lab/en/")
+source("R_code_automatic_script.r.txt")
+
