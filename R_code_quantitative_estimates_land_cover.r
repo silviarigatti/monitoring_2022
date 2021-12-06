@@ -109,7 +109,7 @@ grid.arrange(p1, p2, nnow=1)
 # to have the same scale bar and the same y max value, we can add ylim(0,1) to the ggplot fuunction 
 p1bis <- ggplot(proportion1992, aes(x=cover, y=prop1992, color=cover)) + geom_bar(stat="identity", fill="white") + ylim(0,1)
 p2bis <- ggplot(proportion, aes(x=cover, y=prop2006, color=cover)) + geom_bar(stat="identity", fill="white") + ylim(0,1)
-grid.arrange(p1bis, p2bis, nnow=1)?? non va
+grid.arrange(p1bis, p2bis, nrow=1)
 
 
 
