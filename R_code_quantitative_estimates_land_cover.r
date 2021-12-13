@@ -111,5 +111,31 @@ p1bis <- ggplot(proportion1992, aes(x=cover, y=prop1992, color=cover)) + geom_ba
 p2bis <- ggplot(proportion, aes(x=cover, y=prop2006, color=cover)) + geom_bar(stat="identity", fill="white") + ylim(0,1)
 grid.arrange(p1bis, p2bis, nrow=1)
 
+# 13.12.2021
+install.packages("patchwork")
+library(patchwork)
+# plot two graphs with patchwork package
+p1 + p2
+# to put one graph on top of the other, use the ratio symbol /
+p1/p2
+
+# patchwork works also with raster data, but they should be plotted with the ggplot package
+# instead of using plotRGB, we are going to use ggRGB
+# let's try different stretches
+plotRGB(l1992, r=1, g=2, b=3, stretch="Lin")
+gp1 <- ggRGB(l1992, r=1, g=2, b=3, stretch="lin")
+gp2 <- ggRGB(l1992, r=1, g=2, b=3, stretch="hist")
+gp3 <- ggRGB(l1992, r=1, g=2, b=3, stretch="sqrt")
+gp4 <- ggRGB(l1992, r=1, g=2, b=3, stretch="log")
+# note that in R, log is in base e and not in base 10
+
+gp1 + gp2 + gp3 + gp4
+
+# multitemporal patchwork
+gp1 <- ggRGB(l1992, r=1, g=2, b=3)
+gp5 <- ggRGB(l2006, r=1, g=2, b=3)
+gp1 + gp5
+gp1 / gp5
+
 
 
