@@ -26,7 +26,3 @@ attach(biomes_types)
 ordiellipse(multivar, type, col=c("black", "red", "green", "blue"), kind="ehull", lwd=3)
 ordispider(multivar, type, col=c("black", "red", "green", "blue"), label=TRUE)
 
-# sdm: species distribution modeling package
-install.packages("sdm")
-library(sdm)
-# look at the new file
